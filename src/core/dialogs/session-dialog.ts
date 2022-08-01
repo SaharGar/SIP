@@ -442,7 +442,7 @@ export class SessionDialog extends Dialog implements Session {
       // otherwise this is an ACK to an in dialog INVITE. In either case,
       // guard to make sure the sequence number of the ACK matches the INVITE.
       if (this.ackWait) {
-        if (this.initialTransaction instanceof InviteClientTransaction) {
+        if (this.initialTransaction.constructor.name === InviteClientTransaction) {
           this.logger.warn(`INVITE dialog ${this.id} received unexpected ${message.method} request, dropping.`);
           return;
         }
